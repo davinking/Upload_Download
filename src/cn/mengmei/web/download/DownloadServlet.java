@@ -35,9 +35,11 @@ public class DownloadServlet extends HttpServlet {
 		
 		fileName = fileName.substring(fileName.indexOf("_")+1);
 		
+		//response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8") );
+		
 		String guessCharset = "UTF-8"; /*根据request的locale 得出可能的编码，中文操作系统通常是gb2312*/ 
-	    fileName = new String(fileName.getBytes(guessCharset), "ISO8859-1"); 
-		response.setHeader("Content-Disposition", "attachment;filename="+fileName);
+	    	fileName = new String(fileName.getBytes(guessCharset), "ISO8859-1"); 
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
 		
 		OutputStream out = response.getOutputStream();
 		
